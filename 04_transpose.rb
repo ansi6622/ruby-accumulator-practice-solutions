@@ -13,6 +13,16 @@ def transpose(array)
   result
 end
 
+# Alternate solution:
+# def transpose(array)
+#   return [] if array == []
+#   Array.new(array.first.length) do |i|
+#     Array.new(array.length) do |j|
+#       array[j][i]
+#     end
+#   end
+# end
+
 require 'rspec'
 require 'rspec/autorun'
 
@@ -24,7 +34,7 @@ RSpec.describe '#transpose' do
     expect(actual).to eq([])
   end
 
-  it 'returns string joined by commas with the last two words joined by the word "and"' do
+  it 'returns a transposed array of arrays' do
     input = [
       ['top', 'middle', 'bottom'],
       ['top', 'middle', 'bottom'],
@@ -40,4 +50,19 @@ RSpec.describe '#transpose' do
     expect(actual).to eq(expected)
   end
 
+  it 'returns properly transposed rectangular matrices' do
+    input = [
+      [1,2],
+      [3,4],
+      [5,6]
+    ]
+
+    expected = [
+      [1,3,5],
+      [2,4,6]
+    ]
+    actual = transpose(input)
+
+    expect(actual).to eq(expected)
+  end
 end
